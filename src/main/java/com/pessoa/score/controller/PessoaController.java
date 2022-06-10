@@ -1,12 +1,11 @@
 package com.pessoa.score.controller;
 
 import com.pessoa.score.model.dto.PessoaIn;
+import com.pessoa.score.model.dto.PessoaOut;
 import com.pessoa.score.service.PessoaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -24,5 +23,8 @@ public class PessoaController {
         return ResponseEntity.status(CREATED).build();
     }
 
-
+    @GetMapping(value = "/pessoa/{id}")
+    public PessoaOut pessoaById(@PathVariable Long id){
+        return pessoaService.pessoaById(id);
+    }
 }
