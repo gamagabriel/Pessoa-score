@@ -3,6 +3,7 @@ package com.pessoa.score.service;
 import com.pessoa.score.model.Pessoa;
 import com.pessoa.score.model.dto.PessoaIn;
 import com.pessoa.score.model.dto.PessoaOut;
+import com.pessoa.score.model.dto.PessoaOutList;
 import com.pessoa.score.repository.PessoaRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -10,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import static com.pessoa.score.model.dto.ScoreEnumeration.*;
@@ -37,6 +40,24 @@ public class PessoaService {
             throw new ResponseStatusException(HttpStatus.NO_CONTENT);
         }
         return pessoaOut;
+    }
+
+    public List<PessoaOutList> findAll() {
+        List<PessoaOutList> list = new ArrayList<>();
+        pessoaRepository.findAll().forEach(pessoa -> {
+            PessoaOutList out = new PessoaOutList();
+            out.setNome(pessoa.getNome());
+            out.setCidade(pessoa.getCidade());
+            out.setEstado(pessoa.getEstado());
+            out.setScoreDescricao(mapeiaDescricaoScore(pessoa.getScore()));
+            list.add(out);
+        });
+
+        if (list.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NO_CONTENT);
+        }
+
+        return list;
     }
 
     private String mapeiaDescricaoScore(Integer score) {
