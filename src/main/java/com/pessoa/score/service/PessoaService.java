@@ -24,15 +24,16 @@ public class PessoaService {
     private final PessoaRepository pessoaRepository;
     private final ModelMapper modelMapper;
 
-    public void salvaPessoa(PessoaIn pessoaIn) {
+
+    public Pessoa salvaPessoa(PessoaIn pessoaIn) {
         Pessoa pessoa = modelMapper.map(pessoaIn, Pessoa.class);
-        pessoaRepository.save(pessoa);
+        return pessoaRepository.save(pessoa);
     }
 
     public PessoaOut pessoaById(Long id) {
-        PessoaOut pessoaOut = null;
+        PessoaOut pessoaOut;
         try {
-            Pessoa pessoa = pessoaRepository.findById(id).get();
+            var pessoa = pessoaRepository.findById(id).get();
             pessoaOut = modelMapper.map(pessoa, PessoaOut.class);
             var scoreDescricao = mapeiaDescricaoScore(pessoa.getScore());
             pessoaOut.setScoreDescricao(scoreDescricao);

@@ -1,5 +1,6 @@
 package com.pessoa.score.model.dto;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +11,7 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
+@Builder
 public class PessoaIn {
 
     @NotBlank
@@ -19,7 +21,7 @@ public class PessoaIn {
     private String telefone;
 
     @NotNull
-    private int idade;
+    private Integer idade;
 
     @NotBlank
     private String cidade;
@@ -30,5 +32,5 @@ public class PessoaIn {
     @NotNull
     @Min(0)
     @Max(1000)
-    private int score;
+    private Integer score;
 }

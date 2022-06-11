@@ -1,14 +1,16 @@
 package com.pessoa.score.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,11 +18,24 @@ import javax.persistence.Id;
 public class Pessoa {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @EqualsAndHashCode.Include
     private Long id;
+
+    @NotBlank
     private String nome;
+
+    @NotBlank
     private String telefone;
-    private int idade;
+
+    @NotNull
+    private Integer idade;
+
+    @NotBlank
     private String cidade;
+
+    @NotBlank
     private String estado;
-    private int score;
+
+    @NotNull
+    private Integer score;
 }
