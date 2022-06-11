@@ -1,11 +1,15 @@
 package com.pessoa.score.model.dto;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-@Data
+@Getter
+@Setter
 public class PessoaIn {
 
     @NotBlank
@@ -24,5 +28,7 @@ public class PessoaIn {
     private String estado;
 
     @NotNull
+    @Min(0)
+    @Max(1000)
     private int score;
 }
