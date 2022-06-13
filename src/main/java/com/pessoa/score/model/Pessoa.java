@@ -9,8 +9,6 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,7 +16,6 @@ import javax.validation.constraints.NotNull;
 public class Pessoa {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    @EqualsAndHashCode.Include
     private Long id;
 
     @NotBlank

@@ -24,7 +24,6 @@ public class PessoaService {
     private final PessoaRepository pessoaRepository;
     private final ModelMapper modelMapper;
 
-
     public Pessoa salvaPessoa(PessoaIn pessoaIn) {
         Pessoa pessoa = modelMapper.map(pessoaIn, Pessoa.class);
         return pessoaRepository.save(pessoa);
@@ -61,7 +60,7 @@ public class PessoaService {
         return list;
     }
 
-    private String mapeiaDescricaoScore(Integer score) {
+    public String mapeiaDescricaoScore(Integer score) {
         String descricao = null;
 
         if (score >= 0 && score <= 200) {

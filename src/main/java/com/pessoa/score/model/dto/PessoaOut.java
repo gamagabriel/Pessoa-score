@@ -1,9 +1,6 @@
 package com.pessoa.score.model.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
@@ -13,6 +10,6 @@ public class PessoaOut {
 
     private String nome;
     private String telefone;
-    private int idade;
+    private Integer idade;
     private String scoreDescricao;
 }
